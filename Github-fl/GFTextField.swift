@@ -32,7 +32,11 @@ class GFTextField: UITextField {
         minimumFontSize = 12
         backgroundColor = .tertiarySystemBackground
         autocorrectionType = .no
+        keyboardType = .emailAddress
+        returnKeyType = .search
         placeholder = "Enter a username"
     }
 
 }
+
+
