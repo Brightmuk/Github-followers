@@ -12,11 +12,12 @@ class NetworkManager{
     let baseURl = "https://api.github.com/users/"
     private init(){}
     
-    func getFollowers(for username: String, page: int, completed: @escaping ([Follower]?, String?) -> Void){
-        let endpoint = baseURl + "users/\(username)followers?per_page=100&page=\(page)"
+    func getFollowers(for username: String, page: Int, completed: @escaping ([Follower]?, String?) -> Void){
+        let endpoint = baseURl + "\(username)/followers?per_page=100&page=\(page)"
         
         guard let url = URL(string: endpoint) else{
             completed(nil, "This username created an invalid request, please try again")
+            return
         }
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error{
@@ -31,8 +32,6 @@ class NetworkManager{
             }
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else{
                 let reason: String
-
-                reason = "Server returned status code other than 200"
 
                 reason = "Server returned status code other than 200"
 
